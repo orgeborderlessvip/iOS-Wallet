@@ -91,27 +91,6 @@
 		6855DE511F7520A200812F38 /* WDBlockViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6855DE501F7520A200812F38 /* WDBlockViewModel.m */; };
 		6855DE541F752A9200812F38 /* WDBlockDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6855DE531F752A9200812F38 /* WDBlockDataModel.m */; };
 		6855DE571F7532AF00812F38 /* WDBlockTableDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6855DE561F7532AF00812F38 /* WDBlockTableDataModel.m */; };
-		68645F331F944C450060266B /* libboost_chrono.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F1E1F944C450060266B /* libboost_chrono.a */; };
-		68645F341F944C450060266B /* libboost_context.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F1F1F944C450060266B /* libboost_context.a */; };
-		68645F351F944C450060266B /* libboost_date_time.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F201F944C450060266B /* libboost_date_time.a */; };
-		68645F361F944C450060266B /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F211F944C450060266B /* libboost_filesystem.a */; };
-		68645F371F944C450060266B /* libboost_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F221F944C450060266B /* libboost_system.a */; };
-		68645F381F944C450060266B /* libboost_thread.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F231F944C450060266B /* libboost_thread.a */; };
-		68645F391F944C450060266B /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F241F944C450060266B /* libcrypto.a */; };
-		68645F3A1F944C450060266B /* libdbs_cli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F251F944C450060266B /* libdbs_cli.a */; };
-		68645F3B1F944C450060266B /* libdeterministic_openssl_rand.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F261F944C450060266B /* libdeterministic_openssl_rand.a */; };
-		68645F3C1F944C450060266B /* libfc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F271F944C450060266B /* libfc.a */; };
-		68645F3D1F944C450060266B /* libgraphene_account_history.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F281F944C450060266B /* libgraphene_account_history.a */; };
-		68645F3E1F944C450060266B /* libgraphene_app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F291F944C450060266B /* libgraphene_app.a */; };
-		68645F3F1F944C450060266B /* libgraphene_chain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F2A1F944C450060266B /* libgraphene_chain.a */; };
-		68645F401F944C450060266B /* libgraphene_db.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F2B1F944C450060266B /* libgraphene_db.a */; };
-		68645F411F944C450060266B /* libgraphene_debug_witness.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F2C1F944C450060266B /* libgraphene_debug_witness.a */; };
-		68645F421F944C450060266B /* libgraphene_market_history.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F2D1F944C450060266B /* libgraphene_market_history.a */; };
-		68645F431F944C450060266B /* libgraphene_net.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F2E1F944C450060266B /* libgraphene_net.a */; };
-		68645F441F944C450060266B /* libgraphene_utilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F2F1F944C450060266B /* libgraphene_utilities.a */; };
-		68645F451F944C450060266B /* libgraphene_wallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F301F944C450060266B /* libgraphene_wallet.a */; };
-		68645F461F944C450060266B /* libsecp256k1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F311F944C450060266B /* libsecp256k1.a */; };
-		68645F471F944C450060266B /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68645F321F944C450060266B /* libssl.a */; };
 		68645F4A1F944C6B0060266B /* WDBaseWalletCommand.mm in Sources */ = {isa = PBXBuildFile; fileRef = 68645F491F944C6B0060266B /* WDBaseWalletCommand.mm */; };
 		68645F4D1F9472620060266B /* WDPasswordUserPrivateFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 68645F4C1F9472620060266B /* WDPasswordUserPrivateFileModel.m */; };
 		68645F521F94841C0060266B /* wudis.json in Resources */ = {isa = PBXBuildFile; fileRef = 68645F501F94841C0060266B /* wudis.json */; };
@@ -382,27 +361,6 @@
 		68645F1A1F944C450060266B /* bds_commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bds_commands.h; sourceTree = "<group>"; };
 		68645F1B1F944C450060266B /* cli.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cli.h; sourceTree = "<group>"; };
 		68645F1C1F944C450060266B /* bds_defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bds_defines.h; sourceTree = "<group>"; };
-		68645F1E1F944C450060266B /* libboost_chrono.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_chrono.a; sourceTree = "<group>"; };
-		68645F1F1F944C450060266B /* libboost_context.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_context.a; sourceTree = "<group>"; };
-		68645F201F944C450060266B /* libboost_date_time.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_date_time.a; sourceTree = "<group>"; };
-		68645F211F944C450060266B /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_filesystem.a; sourceTree = "<group>"; };
-		68645F221F944C450060266B /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_system.a; sourceTree = "<group>"; };
-		68645F231F944C450060266B /* libboost_thread.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_thread.a; sourceTree = "<group>"; };
-		68645F241F944C450060266B /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
-		68645F251F944C450060266B /* libdbs_cli.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libdbs_cli.a; sourceTree = "<group>"; };
-		68645F261F944C450060266B /* libdeterministic_openssl_rand.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libdeterministic_openssl_rand.a; sourceTree = "<group>"; };
-		68645F271F944C450060266B /* libfc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfc.a; sourceTree = "<group>"; };
-		68645F281F944C450060266B /* libgraphene_account_history.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgraphene_account_history.a; sourceTree = "<group>"; };
-		68645F291F944C450060266B /* libgraphene_app.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgraphene_app.a; sourceTree = "<group>"; };
-		68645F2A1F944C450060266B /* libgraphene_chain.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgraphene_chain.a; sourceTree = "<group>"; };
-		68645F2B1F944C450060266B /* libgraphene_db.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgraphene_db.a; sourceTree = "<group>"; };
-		68645F2C1F944C450060266B /* libgraphene_debug_witness.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgraphene_debug_witness.a; sourceTree = "<group>"; };
-		68645F2D1F944C450060266B /* libgraphene_market_history.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgraphene_market_history.a; sourceTree = "<group>"; };
-		68645F2E1F944C450060266B /* libgraphene_net.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgraphene_net.a; sourceTree = "<group>"; };
-		68645F2F1F944C450060266B /* libgraphene_utilities.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgraphene_utilities.a; sourceTree = "<group>"; };
-		68645F301F944C450060266B /* libgraphene_wallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgraphene_wallet.a; sourceTree = "<group>"; };
-		68645F311F944C450060266B /* libsecp256k1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsecp256k1.a; sourceTree = "<group>"; };
-		68645F321F944C450060266B /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		68645F481F944C6B0060266B /* WDBaseWalletCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDBaseWalletCommand.h; sourceTree = "<group>"; };
 		68645F491F944C6B0060266B /* WDBaseWalletCommand.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WDBaseWalletCommand.mm; sourceTree = "<group>"; };
 		68645F4B1F9472620060266B /* WDPasswordUserPrivateFileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDPasswordUserPrivateFileModel.h; sourceTree = "<group>"; };
@@ -575,29 +533,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68645F351F944C450060266B /* libboost_date_time.a in Frameworks */,
-				68645F3D1F944C450060266B /* libgraphene_account_history.a in Frameworks */,
-				68645F371F944C450060266B /* libboost_system.a in Frameworks */,
-				68645F431F944C450060266B /* libgraphene_net.a in Frameworks */,
 				513E19E86FEE4B55F2C7B273 /* Pods_TangTradePlatform.framework in Frameworks */,
-				68645F361F944C450060266B /* libboost_filesystem.a in Frameworks */,
-				68645F441F944C450060266B /* libgraphene_utilities.a in Frameworks */,
-				68645F401F944C450060266B /* libgraphene_db.a in Frameworks */,
-				68645F3A1F944C450060266B /* libdbs_cli.a in Frameworks */,
 				68B940601F8CEFFC00FC5E80 /* openssl.framework in Frameworks */,
-				68645F411F944C450060266B /* libgraphene_debug_witness.a in Frameworks */,
-				68645F3E1F944C450060266B /* libgraphene_app.a in Frameworks */,
-				68645F421F944C450060266B /* libgraphene_market_history.a in Frameworks */,
-				68645F451F944C450060266B /* libgraphene_wallet.a in Frameworks */,
-				68645F3C1F944C450060266B /* libfc.a in Frameworks */,
-				68645F471F944C450060266B /* libssl.a in Frameworks */,
-				68645F381F944C450060266B /* libboost_thread.a in Frameworks */,
-				68645F461F944C450060266B /* libsecp256k1.a in Frameworks */,
-				68645F331F944C450060266B /* libboost_chrono.a in Frameworks */,
-				68645F3B1F944C450060266B /* libdeterministic_openssl_rand.a in Frameworks */,
-				68645F341F944C450060266B /* libboost_context.a in Frameworks */,
-				68645F391F944C450060266B /* libcrypto.a in Frameworks */,
-				68645F3F1F944C450060266B /* libgraphene_chain.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1453,27 +1390,6 @@
 		68645F1D1F944C450060266B /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				68645F1E1F944C450060266B /* libboost_chrono.a */,
-				68645F1F1F944C450060266B /* libboost_context.a */,
-				68645F201F944C450060266B /* libboost_date_time.a */,
-				68645F211F944C450060266B /* libboost_filesystem.a */,
-				68645F221F944C450060266B /* libboost_system.a */,
-				68645F231F944C450060266B /* libboost_thread.a */,
-				68645F241F944C450060266B /* libcrypto.a */,
-				68645F251F944C450060266B /* libdbs_cli.a */,
-				68645F261F944C450060266B /* libdeterministic_openssl_rand.a */,
-				68645F271F944C450060266B /* libfc.a */,
-				68645F281F944C450060266B /* libgraphene_account_history.a */,
-				68645F291F944C450060266B /* libgraphene_app.a */,
-				68645F2A1F944C450060266B /* libgraphene_chain.a */,
-				68645F2B1F944C450060266B /* libgraphene_db.a */,
-				68645F2C1F944C450060266B /* libgraphene_debug_witness.a */,
-				68645F2D1F944C450060266B /* libgraphene_market_history.a */,
-				68645F2E1F944C450060266B /* libgraphene_net.a */,
-				68645F2F1F944C450060266B /* libgraphene_utilities.a */,
-				68645F301F944C450060266B /* libgraphene_wallet.a */,
-				68645F311F944C450060266B /* libsecp256k1.a */,
-				68645F321F944C450060266B /* libssl.a */,
 			);
 			path = lib;
 			sourceTree = "<group>";
