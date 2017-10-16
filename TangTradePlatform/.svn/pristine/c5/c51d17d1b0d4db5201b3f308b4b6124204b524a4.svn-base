@@ -1,0 +1,21 @@
+//http后缀
+typedef NS_ENUM(NSInteger,HTTP_COMMAND_LIST){
+    HTTP_COMMAND_LIST_Register,
+    HTTP_COMMAND_LIST_Login,
+    HTTP_COMMAND_LIST_History,
+    HTTP_COMMAND_LIST_Receive_Change,
+    /*******************/
+    HTTP_METHOD_RESERVE,
+    HTTP_METHOD_COUNT,
+};
+
+//#ifdef __ONLY_FOR_HTTP_COMMUNICATE__
+//   NSString *urlString = @"http://173.15.20.186:80/upf/TMemberController.do?isSignUser";  ****************************************************************************/
+
+static char cHttpMethod[HTTP_METHOD_COUNT][256] = {
+    "account_create",//注册
+    "account_login",//登录
+    "get_account_history",//交易历史记录
+    "get_receive_exchange",
+};
+

@@ -1,0 +1,92 @@
+//登录注册页面
+"登录" = "Login";
+"密码" = "Password";
+"没有账户?\n点击注册" = "No account?\nRegister now";
+"用户名" = "User name";
+"注册" = "Registration";
+"确认密码" = "Confirm Password";
+"请输入8-18位数字字母组合密码" = "Please enter a 8-18 digit alphanumeric combination password";
+"密码和确认密码不一致" = "The password and confirmation password are inconsistent";
+//注意页面
+"密码设置后不可更改!请牢记您的密码,并将其记在其他安全的地方\n你的密码:" = "Once set, password cannot be changed! Please ensure you write down your password and store somewhere safe.\nYour password:";
+//Tabbar
+"首页" = "Home";
+"我的" = "Me";
+"交易" = "Transaction";
+"承兑商" = "Accepting merchant";
+//Home页面
+"我的财产" = "My wealth";
+"总资产(BDS)" = "Total assets(BDS)";
+//我的页面
+"交易记录" = "Transaction records";
+"付款" = "Send out";
+"收款" = "Reception";
+//付款
+"账户:" = "Account:";
+"余额:" = "Balance:";
+"数量:" = "Amount:";
+//收款
+"点击复制" = "Copy the collection address";
+//设置页面
+"检查版本" = "Check for new version";
+"切换语言" = "Select the languages";
+"当前已是最新版本" = "This is the latest version at this time";
+"退出登录" = "Log out";
+//选择语言
+"语言" = "Language";
+"设置中" = "Setting";
+//BlockViewController页面
+"交易数" = "transactions";
+"活跃见证人" = "Active witnesses";
+"活跃理事会成员" = "Active committee members";
+"上一个区块" = "Head block age";
+"区块 ID" = "Block ID";
+"见证人" = "Witnesses";
+"当前区块" = "Current Block";
+"下个区块生成时间" = "Next maintenance time";
+"区块生成时间" = "Generate time";
+//扫一扫
+"扫描二维码" = "QRCode Scanning";
+"相册" = "Album";
+//交易
+"最高价" = "Top price";
+"最低价" = "Bottom price";
+"成交量" = "Volume";
+"成交额" = "Turnover";
+//其他
+"加载中" = "Loading";
+"用户名或密码错误" = "User name or password is wrong!";
+"登录失败" = "Login failture";
+"确定" = "Confirm";
+"注册失败" = "Register failture";
+"该用户已注册" = "The user name has been registered";
+"网络连接失败,请稍后再试" = "The network connection failed. Please try again later";
+"密码和确认密码不一致，请修改" = "The password and confirmation password are inconsistent. Please correct them";
+"转入" = "Roll in";
+"转出" = "Roll out";
+"交易失败" = "Paying Fail";
+"交易成功" = "Paying Success";
+"该账户不存在" = "This user does not exist";
+"余额不足" = "Sorry, your credit is running low";
+"提示" = "Attention";
+"提交中" = "Submitting";
+"不能向自己转账" = "You can't transfer to yourself";
+"用户名为空" = "User name is empty";
+"确认转账么?\n用户名:" = "Confirm the transfer?\nUser name:";
+"\n金额:" = "\nAmount:";
+"取消" = "Cancel";
+"手续费: " = "Service Charge: ";
+"请输入金额" = "Please enter the amount";
+"请在iPhone的“设置-隐私-相机”选项中，允许Broderless访问你的相机。" = "Please allow Borderless access to your camera in the iPhone settings privacy camera option.";
+"该图片没有包含一个二维码!" = "The picture does not contain a QRCode!";
+"已经复制到剪切板" = "It has been copied to the clipboard";
+"请输入数字字母组合密码" ="Please enter a combination of numbers and letters password";
+"确定退出么"="Do you want to quit?";
+"检测到新版本:" = "A new version was detected:";
+"当前版本:" = "Current version:";
+"更新内容:" = "update content:";
+"升级" = "Update";
+"不再提示" = "Don't prompt me again";
+"关闭" = "Close";
+"版本更新" = "Version update";
+

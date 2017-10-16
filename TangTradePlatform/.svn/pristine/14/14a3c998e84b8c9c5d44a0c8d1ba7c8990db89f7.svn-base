@@ -1,0 +1,50 @@
+//
+//  WDShowChongZhiQRCodeView.m
+//  TangTradePlatform
+//
+//  Created by ctcios2 on 2017/10/11.
+//  Copyright © 2017年 com.tang.trade. All rights reserved.
+//
+
+#import "WDShowChongZhiQRCodeView.h"
+
+@interface WDShowChongZhiQRCodeView ()
+@property (weak, nonatomic) IBOutlet UIView *backCornerView;
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *closeButton;
+@property (weak, nonatomic) IBOutlet UIImageView *qrCodeImageView;
+@property (weak, nonatomic) IBOutlet UIView *cornerLabelView;
+@property (weak, nonatomic) IBOutlet UILabel *accountLabel;
+@property (weak, nonatomic) IBOutlet UIButton *clicpButton;
+
+
+@property (nonatomic,copy) void (^clickClose)();
+
+@property (nonatomic,strong) id model;
+
+@end
+
+@implementation WDShowChongZhiQRCodeView
+
++ (void)showWithModel:(id)model clickClose:(void (^)())clickClose {
+    WDShowChongZhiQRCodeView *view = [self creatXib];
+    view.clickClose = clickClose;
+    
+    view.frame = [UIScreen mainScreen].bounds;
+    [[UIApplication sharedApplication].delegate.window addSubview:view];
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    [UIViewController addCornerRadius:15 toView:_backCornerView];
+    [UIViewController addCornerRadius:9 toView:self.clicpButton];
+    [UIViewController addCornerRadius:6 toView:self.cornerLabelView];
+    
+    [[self.clicpButton rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
+        
+    }];
+}
+
+@end

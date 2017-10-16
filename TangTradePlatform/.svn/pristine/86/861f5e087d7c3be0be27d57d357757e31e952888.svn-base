@@ -1,0 +1,112 @@
+//
+//  WDRegisterCardView.m
+//  TangTradePlatform
+//
+//  Created by ctcios2 on 2017/9/21.
+//  Copyright © 2017年 com.tang.trade. All rights reserved.
+//
+
+#import "WDRegisterCardView.h"
+
+@interface WDRegisterCardView ()
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIImageView *passwordSeeImageView;
+@property (weak, nonatomic) IBOutlet UIButton *passwordSeeButton;
+@property (weak, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
+@property (weak, nonatomic) IBOutlet UIImageView *confirmPasswordSeeImageView;
+@property (weak, nonatomic) IBOutlet UIButton *confirmPasswordSeeButton;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
+
+@property (nonatomic,strong) WDRegisterViewModel *viewModel;
+
+@end
+
+@implementation WDRegisterCardView
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [_registerButton setBackgroundImage:[UIImage imageNamed:@"Login_button_enable"] forState:(UIControlStateNormal)];
+    [_registerButton setBackgroundImage:[UIImage imageNamed:@"Login_button_disable"] forState:(UIControlStateDisabled)];
+}
+
+- (void)bindViewModel:(WDRegisterViewModel *)viewModel {
+    _viewModel = viewModel;
+    
+    [self modelChanged];
+    
+    [self.userNameTextField.rac_textSignal subscribeNext:^(NSString *name) {
+        self.userNameTextField.text = [self.userNameTextField.text stringByReplacingOccurrencesOfString:@"[^0-9a-zA-Z]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, self.userNameTextField.text.length)];
+        
+        viewModel.userName = self.userNameTextField.text;
+    }];
+    @weakify(self);
+    
+    [self.passwordTextField.rac_textSignal subscribeNext:^(NSString *text) {
+        @strongify(self);
+        
+        if (text.length > 12) {
+            self.passwordTextField.text = [text substringToIndex:12];
+        }
+        
+        viewModel.password = self.passwordTextField.text;
+    }];
+    
+    [self.confirmPasswordTextField.rac_textSignal subscribeNext:^(NSString *text) {
+        if (text.length > 12) {
+            self.confirmPasswordTextField.text = [text substringToIndex:12];
+        }
+        
+        viewModel.confirmPassword = self.confirmPasswordTextField.text;
+    }];
+    
+    RAC(self.registerButton,enabled) = [RACSignal combineLatest:@[self.userNameTextField.rac_textSignal,self.passwordTextField.rac_textSignal,self.confirmPasswordTextField.rac_textSignal] reduce:^id(NSString *userName,NSString *password,NSString *confirmPassword){
+        return @(userName.length > 0 && password.length > 5 && confirmPassword.length > 5);
+    }];
+    
+    [[self.passwordSeeButton rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
+        @strongify(self);
+        [self setWithTextField:self.passwordTextField toImageView:self.passwordSeeImageView];
+    }];
+    
+    [[self.confirmPasswordSeeButton rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
+        @strongify(self);
+        
+        [self setWithTextField:self.confirmPasswordTextField toImageView:self.confirmPasswordSeeImageView];
+    }];
+    
+    [[self.backButton rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
+        [viewModel.backSubject sendNext:x];
+    }];
+    
+    [[self.registerButton rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
+        [viewModel.registerSubject sendNext:x];
+    }];
+}
+
+- (void)modelChanged {
+    [RACObserve(_viewModel, userName) subscribeNext:^(NSString *text) {
+        _userNameTextField.text = text;
+    }];
+    
+    [RACObserve(_viewModel, password) subscribeNext:^(NSString *text) {
+        _passwordTextField.text = text;
+    }];
+    
+    [RACObserve(_viewModel, confirmPassword) subscribeNext:^(NSString *text) {
+        _confirmPasswordTextField.text = text;
+    }];
+}
+
+- (void)setWithTextField:(UITextField *)textField toImageView:(UIImageView *)imageView{
+    BOOL isSec = !textField.secureTextEntry;
+    
+    NSString *imageName = [NSString stringWithFormat:@"eye_%@",isSec?@"close":@"open"];
+    
+    imageView.image = [UIImage imageNamed:imageName];
+    
+    textField.secureTextEntry = isSec;
+}
+
+@end

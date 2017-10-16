@@ -1,0 +1,37 @@
+//
+//  WDAttentionView.m
+//  TangTradePlatform
+//
+//  Created by ctcios2 on 2017/9/23.
+//  Copyright © 2017年 com.tang.trade. All rights reserved.
+//
+
+#import "WDAttentionView.h"
+#import "WDRegisterViewModel.h"
+@interface WDAttentionView ()
+@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
+
+@end
+
+@implementation WDAttentionView
+
+- (void)bindModel:(WDRegisterViewModel *)viewModel {
+    RAC(self.passwordLabel,text) = RACObserve(viewModel, password);
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    NSString *textStr = _detailLabel.text;
+    // 调整行间距
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:textStr];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:4];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [textStr length])];
+    _detailLabel.attributedText = attributedString;
+    
+    
+}
+
+@end

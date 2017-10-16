@@ -1,0 +1,88 @@
+//
+//  WDLoginChildViewController.m
+//  TangTradePlatform
+//
+//  Created by ctcios2 on 2017/9/21.
+//  Copyright © 2017年 com.tang.trade. All rights reserved.
+//
+
+#import "WDLoginChildViewController.h"
+#import "WDLoginCardView.h"
+#import "BaseTabBarViewController.h"
+@interface WDLoginChildViewController ()
+@property (nonatomic,strong) WDLoginCardView *loginView;
+
+@property (nonatomic,strong) WDLoginViewModel *loginViewModel;
+@end
+
+@implementation WDLoginChildViewController
+
+- (void)loadView {
+    [super loadView];
+    
+    _loginView = [WDLoginCardView creatXib];
+    
+    self.view = _loginView;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.view.layer.cornerRadius = 20;
+    
+    self.view.layer.masksToBounds = YES;
+    
+    self.loginViewModel = [[WDLoginViewModel alloc] init];
+    
+    [self.loginView bindViewModel:self.loginViewModel];
+    @weakify(self);
+    [self.loginViewModel.loginSubject subscribeNext:^(id x) {
+        @strongify(self);
+        [self clearKeyBoard];
+        
+        [self.loginViewModel loginWithSuccess:^{
+            [UIViewController jumpToMainWithName:self.loginViewModel.userName password:self.loginViewModel.password];
+        } failture:^{
+            NSString *message = @"用户名或密码错误";
+            NSString *title = @"登录失败";
+            NSString *confirm = @"确定";
+            [UIAlertController showAlert:YES fromVC:self withTitle:title message:message withButtonTitle:@[confirm] clickAction:^(NSInteger index, NSString *title) {
+                
+            }];
+        } error:^{
+            NSString *message = @"网络连接失败,请稍后再试";
+            NSString *title = @"登录失败";
+            NSString *confirm = @"确定";
+            [UIAlertController showAlert:YES fromVC:self withTitle:title message:message withButtonTitle:@[confirm] clickAction:^(NSInteger index, NSString *title) {
+                
+            }];
+        }];
+    }];
+    
+    [self.loginViewModel.registerSubject subscribeNext:^(id x) {
+        @strongify(self);
+        
+        [self clearKeyBoard];
+        
+        UIScrollView *scroll =(UIScrollView *) self.view.superview.superview;
+        
+        [scroll setContentOffset:CGPointMake(CGRectGetWidth(scroll.frame), 0) animated:YES];
+    }];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

@@ -1,0 +1,52 @@
+//
+//  WDTiXianChildViewModel.m
+//  TangTradePlatform
+//
+//  Created by ctcios2 on 2017/10/12.
+//  Copyright © 2017年 com.tang.trade. All rights reserved.
+//
+
+#import "WDTiXianChildViewModel.h"
+
+@implementation WDTiXianChildViewModel
+- (instancetype)init {
+    if (self = [super init]) {
+        @weakify(self);
+        [RACObserve(self, currencyKind) subscribeNext:^(id x) {
+            @strongify(self);
+            switch (self.currencyKind) {
+                case CurrencyKindBTC:
+                    [self setValue:@[@"钱包地址"] forKey:@"payStyleArray"];
+                    break;
+                case CurrencyKindCNY:
+                    [self setValue:@[@"银行卡",@"支付宝"] forKey:@"payStyleArray"];
+                    break;
+                case CurrencyKindUSD:
+                    [self setValue:@[@"银行卡"] forKey:@"payStyleArray"];
+                    break;
+            }
+        }];
+        [RACObserve(self, payStyleArray) subscribeNext:^(id x) {
+            NSString *string = self.payStyleArray[0];
+            
+            SelectedPayKind kind = SelectedPayKindCNYCard;
+            if ([string isEqualToString:@"银行卡"]) {
+                if (self.currencyKind == CurrencyKindCNY) {
+                    kind = SelectedPayKindCNYCard;
+                }else {
+                    kind = SelectedPayKindUSDCard;
+                }
+            }else if ([string isEqualToString:@"钱包地址"]) {
+                kind = SelectedPayKindBTCWallet;
+            }else if ([string isEqualToString:@"支付宝"]) {
+                kind = SelectedPayKindCNYAlipay;
+            }else if ([string isEqualToString:@"微信"]) {
+                kind = SelectedPayKindBTCWallet;
+            }
+            
+            self.selectedStyleIndex = kind;
+        }];
+    }
+    return self;
+}
+@end

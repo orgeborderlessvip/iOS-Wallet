@@ -1,0 +1,84 @@
+//
+//  WDSettingViewController.m
+//  TangTradePlatform
+//
+//  Created by ctcios2 on 2017/9/28.
+//  Copyright © 2017年 com.tang.trade. All rights reserved.
+//
+
+#import "WDSettingViewController.h"
+#import "WDChangeLanguageViewController.h"
+#import "WDLogin_RegisterViewController.h"
+#import "WDCheckUpdateViewController.h"
+@interface WDSettingViewController ()<UserLanguageChange>
+@property (weak, nonatomic) IBOutlet UIView *logoBackView;
+@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+@property (weak, nonatomic) IBOutlet UIButton *checkVersionButton;
+@property (weak, nonatomic) IBOutlet UIButton *changeLanguageButton;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+
+
+@end
+
+@implementation WDSettingViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self addCornerRadius:5 toView:_checkVersionButton];
+    [self addCornerRadius:5 toView:_changeLanguageButton];
+    [self addCornerRadius:5 toView:_logoutButton];
+    [self addCornerRadius:15 toView:_logoImageView];
+    
+    _versionLabel.text = ({
+        NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+        NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+        app_Version;
+    });
+    
+    @weakify(self);
+    [[_backButton rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
+        @strongify(self);
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    
+    [[_checkVersionButton rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
+        [WDCheckUpdateViewController showWithUserCheck:YES];
+    }];
+    
+    [[_changeLanguageButton rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
+        @strongify(self);
+        [self.navigationController pushViewController:[WDChangeLanguageViewController new] animated:YES];
+    }];
+    
+    [[_logoutButton rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
+        @strongify(self);
+        [UIAlertController showAlert:YES fromVC:self withTitle:@"提示" message:@"确定退出么" withButtonTitle:@[@"取消",@"确定"] clickAction:^(NSInteger index, NSString *title) {
+            if (index == 1) {
+                WDLogin_RegisterViewController *vc = [WDLogin_RegisterViewController new];
+                
+                [UIApplication sharedApplication].delegate.window.rootViewController = vc;
+            }
+        }];
+    }];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)languageSet {
+    NSString *checkVersion = WDLocalizedString(@"检查版本");
+    NSString *changeLanguage = WDLocalizedString(@"切换语言");
+    NSString *logout = WDLocalizedString(@"退出登录");
+    
+    [_checkVersionButton setTitle:checkVersion forState:(UIControlStateNormal)];
+    [_changeLanguageButton setTitle:changeLanguage forState:(UIControlStateNormal)];
+    [_logoutButton setTitle:logout forState:(UIControlStateNormal)];
+}
+
+@end

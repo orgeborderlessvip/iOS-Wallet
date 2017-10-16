@@ -1,0 +1,109 @@
+//
+//  WDRegisterCardView.m
+//  TangTradePlatform
+//
+//  Created by ctcios2 on 2017/9/21.
+//  Copyright © 2017年 com.tang.trade. All rights reserved.
+//
+
+#import "WDLoginCardView.h"
+#import "NSString+changeTest.h"
+@interface WDLoginCardView ()<UserLanguageChange>
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIImageView *passwordSeeImageView;
+@property (weak, nonatomic) IBOutlet UIButton *passwordSeeButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *registerLabel;
+
+@end
+
+@implementation WDLoginCardView
+
+- (void)languageSet {
+    NSString *string = WDLocalizedString(@"登录");
+    NSString *userName = WDLocalizedString(@"用户名");
+    NSString *password = WDLocalizedString(@"密码");
+    NSString *registerButton = WDLocalizedString(@"没有账户?\n点击注册");
+    _titleLabel.text = string;
+    _userNameTextField.placeholder = userName;
+    _passwordTextField.placeholder = password;
+    _registerLabel.text = registerButton;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self languageSet];
+    [_loginButton setBackgroundImage:[UIImage imageNamed:@"Login_button_enable"] forState:(UIControlStateNormal)];
+    [_loginButton setBackgroundImage:[UIImage imageNamed:@"Login_button_disable"] forState:(UIControlStateDisabled)];
+}
+
+- (void)bindViewModel:(WDLoginViewModel *)viewModel {
+    @weakify(self);
+    
+    [RACObserve(viewModel, userName) subscribeNext:^(NSString *x) {
+        self.userNameTextField.text = x;
+    
+        self.loginButton.enabled = x.length > 0 && viewModel.password.length > 5;
+    }];
+    
+    [RACObserve(viewModel, password) subscribeNext:^(NSString *x) {
+        self.passwordTextField.text = x;
+        self.loginButton.enabled = viewModel.userName.length > 0 && x.length > 5;
+    }];
+    
+    [self.userNameTextField.rac_textSignal subscribeNext:^(NSString *name) {
+        viewModel.userName = [name changeTest];
+        
+        self.loginButton.enabled = viewModel.password.length > 5 && viewModel.userName.length > 0;
+    }];
+    
+    [self.passwordTextField.rac_textSignal subscribeNext:^(NSString *text) {
+        @strongify(self)
+        
+        self.loginButton.enabled = text.length > 5 && viewModel.userName.length > 0;
+        
+        if (text.length > 18) {
+            self.passwordTextField.text = [text substringToIndex:18];
+        }
+        
+        viewModel.password = self.passwordTextField.text;
+    }];
+    
+    [[self.registerButton rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
+        [viewModel.registerSubject sendNext:x];
+    }];
+    
+    [[self.loginButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [viewModel.loginSubject sendNext:x];
+    }];
+    
+    [[self.passwordSeeButton rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
+        @strongify(self);
+        [self setWithTextField:self.passwordTextField toImageView:self.passwordSeeImageView];
+    }];
+    
+    NSString *userName = [[NSUserDefaults standardUserDefaults] objectForKey:@"kUserName"];
+//    NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"kPassword"];
+    
+    viewModel.userName = userName;
+//    viewModel.password = password;
+}
+
+- (void)setWithTextField:(UITextField *)textField toImageView:(UIImageView *)imageView{
+    BOOL isSec = !textField.secureTextEntry;
+    
+    NSString *imageName = [NSString stringWithFormat:@"eye_%@",isSec?@"close":@"open"];
+    
+    imageView.image = [UIImage imageNamed:imageName];
+    
+    textField.secureTextEntry = isSec;
+}
+
+@end

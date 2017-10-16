@@ -1,0 +1,71 @@
+//
+//  WDSendOutViewModel.m
+//  TangTradePlatform
+//
+//  Created by ctcios2 on 2017/9/22.
+//  Copyright © 2017年 com.tang.trade. All rights reserved.
+//
+
+#import "WDSendOutViewModel.h"
+#import "WDNetworkManager.h"
+#import "WDUploadGetHistoryModel.h"
+#import "WDHomeTableDataModel.h"
+#import "WDUploadSendModel.h"
+@implementation WDSendOutViewModel
+
++ (void)loadMyDataWithSuccess:(void(^)(CGFloat haveAmount,NSString *coinKind))success error:(void(^)())error {
+    WDUploadGetHistoryModel *model = [[WDUploadGetHistoryModel alloc] init];
+    
+    model.api_code = @"list_account_balances";
+    
+    model.name = [WDNetworkManager sharedInstance].userName;
+    
+    [WDNetworkManager createRequestWithParam:[model dictionaryFromModel] withMethod:POST success:^(id result) {
+        WDBaseResultModel *resultModel = [WDBaseResultModel modelToDic:result withDataModelTransFormName:@"WDHomeTableDataModel"];
+        
+        if (resultModel.status) {
+            if (resultModel.data.count) {
+                success(((WDHomeTableDataModel *)resultModel.data.firstObject).coinPrice.doubleValue / 100000.f,@"BTS");
+            }else {
+                success(0,@"BTS");
+            }
+        }else {
+            
+        }
+    } failure:^(NSError *erro) {
+        
+    } showHUD:YES showText:@"加载中"];
+}
+
+- (void)loadMyAccountData {
+    [WDSendOutViewModel loadMyDataWithSuccess:^(CGFloat haveAmount, NSString *coinKind) {
+        self.coinKind = coinKind;
+        self.haveAmount = haveAmount;
+    } error:^{
+        
+    }];
+}
+
+- (RACSubject *)sendSubject {
+    if (!_sendSubject) {
+        _sendSubject = [RACSubject subject];
+    }
+    return _sendSubject;
+}
+
+- (void)sendPay {
+    WDUploadSendModel *model = [[WDUploadSendModel alloc] initWithFrom:[WDNetworkManager sharedInstance].userName to:self.account amount:self.amount symbol:@"BTS"];
+    
+    
+    [WDNetworkManager createRequestWithParam:[model dictionaryFromModel] withMethod:POST success:^(id result) {
+        WDBaseResultModel *model = [WDBaseResultModel modelToDic:result withDataModelTransFormName:nil];
+        
+        [self.sendSubject sendNext:@(model.status)];
+        
+    } failure:^(NSError *erro) {
+        [self.sendSubject sendError:erro];
+    } showHUD:YES showText:@"提交中"];
+    
+}
+
+@end

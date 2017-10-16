@@ -1,0 +1,189 @@
+//
+//  WDTiXianChildViewController.m
+//  TangTradePlatform
+//
+//  Created by ctcios2 on 2017/10/12.
+//  Copyright © 2017年 com.tang.trade. All rights reserved.
+//
+
+#import "WDTiXianChildViewController.h"
+#import "WDChongZhinContainerView.h"
+#import "WDTiXianChildViewModel.h"
+
+@interface WDTiXianChildViewController ()<UserLanguageChange>
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *containerHeight;
+@property (weak, nonatomic) IBOutlet UILabel *coinKindLabel;
+@property (weak, nonatomic) IBOutlet UIButton *coinButton;
+@property (weak, nonatomic) IBOutlet UITextField *assetsTextField;
+@property (weak, nonatomic) IBOutlet UILabel *assetsLabel;
+@property (weak, nonatomic) IBOutlet UIView *containView;
+@property (weak, nonatomic) IBOutlet UILabel *serviceChargeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *serviceChargeKindLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gateWayLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gateWayKindLabel;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *tiXianStyleTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yuETitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *assetsTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *serviceChargeTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gateWayTitleLabel;
+@property (nonatomic,strong) WDChongZhinContainerView *containerView;
+@property (nonatomic,strong) WDTiXianChildViewModel *viewModel;
+
+@end
+
+@implementation WDTiXianChildViewController
+
+- (void)languageSet {
+    _tiXianStyleTitleLabel.text = WDLocalizedString(@"请选择提现币种");
+    [self setBalance];
+    _assetsTitleLabel.text = WDLocalizedString(@"提现资产");
+    _serviceChargeTitleLabel.text = WDLocalizedString(@"手续费");
+    _gateWayTitleLabel.text = WDLocalizedString(@"服务费");
+}
+
+- (WDTiXianChildViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [WDTiXianChildViewModel new];
+        
+        @weakify(self);
+        [RACObserve(self.viewModel, selectedStyleIndex) subscribeNext:^(id x) {
+            @strongify(self);
+            switch (self.viewModel.selectedStyleIndex) {
+                case SelectedPayKindCNYWeChat:
+                    _containerHeight.constant = 61 * 2 + 15;
+                    break;
+                case SelectedPayKindCNYCard:
+                    _containerHeight.constant = 61 * 4 + 15 * 3;
+                    break;
+                case SelectedPayKindUSDCard:
+                    _containerHeight.constant = 61 * 3 + 15 * 2;
+                    break;
+                case SelectedPayKindBTCWallet:
+                    _containerHeight.constant = 61;
+                    break;
+                case SelectedPayKindCNYAlipay:
+                    _containerHeight.constant = 61 * 2 + 15;
+                    break;
+                default:
+                    break;
+            }
+            self.containerView.selectedKind = self.viewModel.selectedStyleIndex;
+            
+        }];
+        
+        RAC(self.viewModel,currencyArray) = RACObserve(self, paySupportArray);
+        
+        [[self.assetsTextField rac_textSignal] subscribeNext:^(NSString *text) {
+            
+        }];
+        
+        [RACObserve(self.viewModel, currencyKind) subscribeNext:^(id x) {
+            @strongify(self);
+            self.coinKindLabel.text = self.viewModel.currencyArray[self.viewModel.currencyKind];
+            self.assetsLabel.text = self.viewModel.currencyArray[self.viewModel.currencyKind];
+            self.serviceChargeKindLabel.text = self.viewModel.currencyArray[self.viewModel.currencyKind];
+            self.gateWayKindLabel.text = self.viewModel.currencyArray[self.viewModel.currencyKind];
+            [self setBalance];
+        }];
+        
+        [RACObserve(self.viewModel, myMoney) subscribeNext:^(id x) {
+            @strongify(self);
+            [self setBalance];
+        }];
+    }
+    return _viewModel;
+}
+
+- (void)setBalance {
+    NSString *title = nil;
+    switch (self.viewModel.currencyKind) {
+        case CurrencyKindUSD:
+            title = @"USD";
+            break;
+        case CurrencyKindCNY:
+            title = @"CNY";
+            break;
+        case CurrencyKindBTC:
+            title = @"BTC";
+            break;
+    }
+    
+//    _balanceTitleLabel.text = [NSString stringWithFormat:@"%@: %.4f%@",WDLocalizedString(@"余额"),self.viewModel.myMoney,title];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    for (int i = 1001;i < 1006;i ++) {
+        UIView *view = [self.view.subviews.firstObject viewWithTag:i];
+        
+        [[self class] addCornerRadius:5 toView:view];
+    }
+    
+    self.containerView = [WDChongZhinContainerView creatXib];
+    
+    [self registerFunction];
+    
+    [self.containView addSubview:self.containerView];
+    
+    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.left.right.mas_equalTo(self.containView);
+    }];
+    
+    
+    self.viewModel.selectedStyleIndex = SelectedPayKindCNYCard;
+}
+
+- (void)registerFunction {
+    @weakify(self);
+    [[self.coinButton rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
+        @strongify(self);
+        [[UIViewController currentViewController] showPickerIndexViewWithArr:self.viewModel.currencyArray andSelectStr:self.coinKindLabel.text selectBolck:^(NSString *selectedString, NSInteger index) {
+            self.viewModel.currencyKind = index;
+        }];
+        
+        [[self.containerView.styleButton rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
+            @strongify(self);
+            NSString *string = WDLocalizedString([NSString stringWithUTF8String:payStyleNameArray[self.viewModel.selectedStyleIndex]]);
+            
+            [[UIViewController currentViewController] showPickerIndexViewWithArr:self.viewModel.payStyleArray andSelectStr:string selectBolck:^(NSString *selectedString, NSInteger index) {
+                NSString *string = self.viewModel.payStyleArray[index];
+                
+                SelectedPayKind kind = SelectedPayKindCNYCard;
+                if ([string isEqualToString:@"银行卡"]) {
+                    if (self.viewModel.currencyKind == CurrencyKindCNY) {
+                        kind = SelectedPayKindCNYCard;
+                    }else {
+                        kind = SelectedPayKindUSDCard;
+                    }
+                }else if ([string isEqualToString:@"钱包地址"]) {
+                    kind = SelectedPayKindBTCWallet;
+                }else if ([string isEqualToString:@"支付宝"]) {
+                    kind = SelectedPayKindCNYAlipay;
+                }else if ([string isEqualToString:@"微信"]) {
+                    kind = SelectedPayKindBTCWallet;
+                }
+                self.viewModel.selectedStyleIndex = kind;
+            }];
+        }];
+    }];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

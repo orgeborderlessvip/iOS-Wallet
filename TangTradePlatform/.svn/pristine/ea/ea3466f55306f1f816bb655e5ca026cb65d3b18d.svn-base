@@ -1,0 +1,18 @@
+
+/* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "Ee0-vY-vTD"; */
+"Ee0-vY-vTD.placeholder" = "確認密碼";
+
+/* Class = "UILabel"; text = "The password and confirmation password are inconsistent"; ObjectID = "UKv-lm-oS3"; */
+"UKv-lm-oS3.text" = "密碼和確認密碼不一致";
+
+/* Class = "UILabel"; text = "Registration"; ObjectID = "W2q-kb-pSB"; */
+"W2q-kb-pSB.text" = "註冊";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "fsd-zb-pZv"; */
+"fsd-zb-pZv.placeholder" = "密碼";
+
+/* Class = "UILabel"; text = "Please enter a 8-18 digit alphanumeric combination password"; ObjectID = "o1F-vA-fC4"; */
+"o1F-vA-fC4.text" = "請輸入8-18位數字字母組合密碼";
+
+/* Class = "UITextField"; placeholder = "User name"; ObjectID = "ufm-Ek-QG4"; */
+"ufm-Ek-QG4.placeholder" = "用戶名";

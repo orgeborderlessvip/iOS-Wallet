@@ -1,0 +1,73 @@
+//
+//  WDReceptionViewController.m
+//  TangTradePlatform
+//
+//  Created by ctcios2 on 2017/9/22.
+//  Copyright © 2017年 com.tang.trade. All rights reserved.
+//
+
+#import "WDReceptionViewController.h"
+#import "WDReceptionViewModel.h"
+#import "WDReceptionTableViewCell.h"
+@interface WDReceptionViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UIView *topBarView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic,strong) WDReceptionViewModel *viewModel;
+
+@end
+
+@implementation WDReceptionViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.view.bounds = [UIScreen mainScreen].bounds;
+    
+    [self addChangeToView:_topBarView withDirection:ChangeDirectionUp_Down startColor:RGBColor(68, 168, 255, 1) endColor:RGBColor(25, 131, 209, 1) width:CGRectGetWidth([UIScreen mainScreen].bounds)];
+    
+    _viewModel = [[WDReceptionViewModel alloc] init];
+    
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    
+    _tableView.rowHeight = 50;
+    
+    [_tableView registerNib:[UINib nibWithNibName:@"WDReceptionTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellId"];
+    
+    _tableView.tableFooterView = ({
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), 1)];
+        
+        view.backgroundColor = RGBColor(246, 246, 246, 1);
+        
+        view;
+    });
+    
+    [[self.backButton rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    
+    [self.viewModel loadData];
+    @weakify(self);
+    [self.viewModel.dataSubject subscribeNext:^(id x) {
+        @strongify(self);
+        
+        [self.tableView reloadData];
+    }];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.viewModel.dataArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    WDReceptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellId" forIndexPath:indexPath];
+    
+    cell.model = self.viewModel.dataArray[indexPath.row];
+    
+    return cell;
+}
+
+@end

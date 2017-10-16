@@ -1,0 +1,25 @@
+//
+//  WDChongZhiChildViewModel.h
+//  TangTradePlatform
+//
+//  Created by ctcios2 on 2017/10/11.
+//  Copyright © 2017年 com.tang.trade. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "WDChongZhiTiXianBaseHeader.h"
+
+@interface WDChongZhiChildViewModel : NSObject
+
+@property (nonatomic,assign) CGFloat myMoney;
+
+@property (nonatomic,strong) NSArray *currencyArray;
+
+@property (nonatomic,assign) CurrencyKind currencyKind;
+
+@property (nonatomic,strong,readonly) NSArray *payStyleArray;
+@property (nonatomic,assign) SelectedPayKind selectedStyleIndex;
+
+- (void)getPayCurrenyDataWithAccid:(NSInteger)accId;
+
+@end

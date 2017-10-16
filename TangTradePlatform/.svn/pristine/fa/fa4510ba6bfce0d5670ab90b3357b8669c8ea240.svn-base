@@ -1,0 +1,25 @@
+//
+//  NSString+changeTest.m
+//  TangTradePlatform
+//
+//  Created by ctcios2 on 2017/9/23.
+//  Copyright © 2017年 com.tang.trade. All rights reserved.
+//
+
+#import "NSString+changeTest.h"
+
+@implementation NSString (changeTest)
+
+- (NSString *)changeTest {
+    NSString *subString = [self stringByReplacingOccurrencesOfString:@"[^0-9a-z]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, self.length)];
+    
+    if (subString.length > 0) {
+        char c = [subString characterAtIndex:0];
+        if (c >= '0' && c <= '9') {
+            subString = [subString substringFromIndex:1];
+        }
+    }
+    return subString;
+}
+
+@end

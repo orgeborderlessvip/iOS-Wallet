@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WDAttentionView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="attention" translatesAutoresizingMaskIntoConstraints="NO" id="unQ-T6-n3S">
+                    <rect key="frame" x="114" y="25" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="NaD-7W-rRT"/>
+                        <constraint firstAttribute="width" secondItem="unQ-T6-n3S" secondAttribute="height" id="cih-aK-juW"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attention" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiQ-1u-fEh">
+                    <rect key="frame" x="170" y="32" width="85" height="25.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUH-5i-GTx">
+                    <rect key="frame" x="32" y="89" width="311" height="76.5"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Once set">
+                            <attributes>
+                                <font key="NSFont" size="16" name=".AppleSystemUIFont"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=",">
+                            <attributes>
+                                <font key="NSFont" size="16" name=".PingFangSC-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> password cannot be changed! Please ensure you write down your password and store somewhere safe.
+Your password:</string>
+                            <attributes>
+                                <font key="NSFont" size="16" name=".AppleSystemUIFont"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ga-Ox-Fb7">
+                    <rect key="frame" x="164" y="181.5" width="46.5" height="23"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <color key="textColor" red="0.23518255352973938" green="0.51226705312728882" blue="0.84584909677505493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USL-w0-LK7">
+                    <rect key="frame" x="169.5" y="274" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="2a8-Mf-j2i"/>
+                        <constraint firstAttribute="width" secondItem="USL-w0-LK7" secondAttribute="height" multiplier="1:1" id="Fjf-7a-fI6"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="Login_button_enable"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="2ga-Ox-Fb7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1au-da-gbr"/>
+                <constraint firstItem="UiQ-1u-fEh" firstAttribute="centerY" secondItem="unQ-T6-n3S" secondAttribute="centerY" id="4GF-hR-7rP"/>
+                <constraint firstItem="USL-w0-LK7" firstAttribute="width" secondItem="USL-w0-LK7" secondAttribute="height" multiplier="1:1" id="Dao-Tv-P6i"/>
+                <constraint firstAttribute="trailing" secondItem="aUH-5i-GTx" secondAttribute="trailing" constant="32" id="EiH-cp-Pd1"/>
+                <constraint firstAttribute="bottom" secondItem="USL-w0-LK7" secondAttribute="bottom" constant="20" id="Xeb-JV-cnW"/>
+                <constraint firstItem="aUH-5i-GTx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="32" id="avA-P3-r1k"/>
+                <constraint firstItem="UiQ-1u-fEh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="25" id="bSn-k8-xzs"/>
+                <constraint firstItem="USL-w0-LK7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="gzL-oh-DFE"/>
+                <constraint firstItem="aUH-5i-GTx" firstAttribute="top" secondItem="unQ-T6-n3S" secondAttribute="bottom" constant="24" id="lOJ-Aw-rSo"/>
+                <constraint firstItem="UiQ-1u-fEh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="32" id="nO4-tq-S39"/>
+                <constraint firstItem="UiQ-1u-fEh" firstAttribute="leading" secondItem="unQ-T6-n3S" secondAttribute="trailing" constant="16" id="neF-rv-GEA"/>
+                <constraint firstItem="2ga-Ox-Fb7" firstAttribute="top" secondItem="aUH-5i-GTx" secondAttribute="bottom" constant="16" id="rTH-1m-Jpa"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backButton" destination="USL-w0-LK7" id="PIa-wM-8rG"/>
+                <outlet property="detailLabel" destination="aUH-5i-GTx" id="1kK-Yv-Olj"/>
+                <outlet property="passwordLabel" destination="2ga-Ox-Fb7" id="uB9-mw-Pn0"/>
+            </connections>
+            <point key="canvasLocation" x="95.5" y="100"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Login_button_enable" width="74" height="74"/>
+        <image name="attention" width="100" height="100"/>
+    </resources>
+</document>
