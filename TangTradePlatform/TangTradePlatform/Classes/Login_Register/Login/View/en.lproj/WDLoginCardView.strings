@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "Login"; ObjectID = "W2q-kb-pSB"; */
+"W2q-kb-pSB.text" = "Login";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "fsd-zb-pZv"; */
+"fsd-zb-pZv.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "No account?\nRegister now"; ObjectID = "iQc-Jp-Bfb"; */
+"iQc-Jp-Bfb.text" = "No account?\nRegister now";
+
+/* Class = "UITextField"; placeholder = "User name"; ObjectID = "ufm-Ek-QG4"; */
+"ufm-Ek-QG4.placeholder" = "User name";

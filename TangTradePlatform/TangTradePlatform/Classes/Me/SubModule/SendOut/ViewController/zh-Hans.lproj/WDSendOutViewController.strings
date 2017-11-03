@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "Account:"; ObjectID = "3md-tt-Dl0"; */
+"3md-tt-Dl0.text" = "资产:";
+
+/* Class = "UILabel"; text = "Service Charge: 20 BDS"; ObjectID = "9bg-ry-KhN"; */
+"9bg-ry-KhN.text" = "手续费: 20 BDS";
+
+/* Class = "UILabel"; text = "Send Out"; ObjectID = "FBB-hU-hlS"; */
+"FBB-hU-hlS.text" = "付款";
+
+/* Class = "UIButton"; normalTitle = "Send the Payment"; ObjectID = "MXG-dv-9iE"; */
+"MXG-dv-9iE.normalTitle" = "付款";
+
+/* Class = "UILabel"; text = "Balance:"; ObjectID = "Obu-oa-ugc"; */
+"Obu-oa-ugc.text" = "余额:";
+
+/* Class = "UILabel"; text = "Amount:"; ObjectID = "yhy-4f-jle"; */
+"yhy-4f-jle.text" = "数量:";

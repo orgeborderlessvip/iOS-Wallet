@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6e273304-5649-ae44-a602-bb330bb5df1e++6720",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "6e273304-5649-ae44-a602-bb330bb5df1e++6720" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "6e273304-5649-ae44-a602-bb330bb5df1e++6720" : 9223372036854775807,
+    "572A2AAA6D601310E8703623692BC49C3EC8B354" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "03D903A5-F1FC-4BF6-AA5A-12BD66AAD969",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "6e273304-5649-ae44-a602-bb330bb5df1e++6720" : "TangTradePlatform\/",
+    "572A2AAA6D601310E8703623692BC49C3EC8B354" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TangTradePlatform",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TangTradePlatform.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/orgeborderlessvip\/iOS-Wallet.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "572A2AAA6D601310E8703623692BC49C3EC8B354"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/123.57.7.121:446\/svn\/bds_ios_v1",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6e273304-5649-ae44-a602-bb330bb5df1e++6720"
+    }
+  ]
+}

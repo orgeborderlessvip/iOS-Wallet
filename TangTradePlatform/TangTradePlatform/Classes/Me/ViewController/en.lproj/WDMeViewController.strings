@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "Transaction records"; ObjectID = "4hc-Ub-k45"; */
+"4hc-Ub-k45.text" = "Transaction records";
+
+/* Class = "UIButton"; normalTitle = "Send Out"; ObjectID = "Vzi-Uq-T3u"; */
+"Vzi-Uq-T3u.normalTitle" = "Send Out";
+
+/* Class = "UIButton"; normalTitle = "Reception"; ObjectID = "jGk-57-bqr"; */
+"jGk-57-bqr.normalTitle" = "Reception";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "ycy-mg-VGT"; */
+"ycy-mg-VGT.text" = "Name";
